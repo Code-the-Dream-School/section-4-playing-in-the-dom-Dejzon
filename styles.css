@@ -1,17 +1,12 @@
 * {
-  margin:15px;
-}
-
-html {
-  padding:5rem;
-  display:flex;
-  justify-content:space-around;
+margin: 0;
+padding: 0;
 }
 
 body {
   min-height: 100vh;
-  width: 80%;
-  margin:auto;
+  width: 100%;
+  background: white;
 }
 
 h1{
@@ -29,7 +24,6 @@ button{
   border: solid;
   border-radius: 10px;
   padding: 5px 8px;
-  margin:5px !important;
 }
 
 button:hover{
@@ -49,33 +43,16 @@ button:hover{
 
 }
 
-input, select {
-  width:10rem;
+.question-container {
+  background: white;
+  padding:1em;
 }
 
-
-
-html {
-    background: linear-gradient(270deg, #92f5dc, #92b7f5, #de92f5);
-    background-size: 600% 600%;
-
-    -webkit-animation: AnimationName 30s ease infinite;
-    -moz-animation: AnimationName 30s ease infinite;
-    animation: AnimationName 30s ease infinite;
+.question-item {
+  margin: 1em;
 }
 
-@-webkit-keyframes AnimationName {
-    0%{background-position:0% 50%}
-    50%{background-position:100% 50%}
-    100%{background-position:0% 50%}
-}
-@-moz-keyframes AnimationName {
-    0%{background-position:0% 50%}
-    50%{background-position:100% 50%}
-    100%{background-position:0% 50%}
-}
-@keyframes AnimationName {
-    0%{background-position:0% 50%}
-    50%{background-position:100% 50%}
-    100%{background-position:0% 50%}
+.question-label {
+  font-weight: 700;
+  margin-bottom: 1em;
 }
