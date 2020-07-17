@@ -32,12 +32,12 @@ button:hover{
   border: solid;
 }
 
-#a-4 button {
+.buttonMargin, #a-2 button, #a-3 button, #a-4 button:not(:first-child) {
   margin-left: 20px;
 }
 
-#a-2 button {
-  margin-left: 20px;
+.pointer:hover, #a-2 button:hover, #a-3 button:hover, #a-4 button:hover {
+  cursor: pointer;
 }
 
 .square{

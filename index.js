@@ -6,16 +6,17 @@
 
 
 //resolve // QUESTION 1 here
-const newHtml = document.createElement('div');
-const divA_1 = document.querySelector('#a-1');
-divA_1.appendChild(newHtml);
+const newHtml = document.createElement('div');        //create new div element
+const divA_1 = document.querySelector('#a-1');        //select div element with #a-1
+divA_1.appendChild(newHtml);                          //add new element to HTML as a child of #a-1
 
-newHtml.classList.add("square");
+newHtml.classList.add("square");                      //add some css class to newHtml
+newHtml.classList.add("pointer");
 
-newHtml.addEventListener("click", () => {
-  if (newHtml.textContent == 'X') {
+newHtml.addEventListener("click", () => {             //on click event listener will check textContent of the new div
+  if (newHtml.textContent == 'X') {                   // if is 'X' change it to 'O'
     newHtml.textContent = 'O';
-  } else {
+  } else {                                            //if not 'X' change it to 'X'
     newHtml.textContent = 'X';
   }
 })
@@ -33,24 +34,24 @@ const colors = [ 'red' , 'white', 'black' , 'green' , 'orange'];
 
 //resolve // QUESTION 2 here
 
-const newList = document.createElement('select');
-const divA_2 = document.getElementById('a-2');
-divA_2.appendChild(newList);
+const newList = document.createElement('select');            //create new select element
+const divA_2 = document.getElementById('a-2');               //select div element with #a-2
+divA_2.appendChild(newList);                                 //add new element to HTML as child of #a-2
 
-for(let i = 0; i < colors.length; i++) {
-  let option = document.createElement('option');
-  option.value = colors[i];
+for(let i = 0; i < colors.length; i++) {                    // loop through colors array
+  let option = document.createElement('option');            //create new option element
+  option.value = colors[i];                                 //add element of array as option element
   option.label = colors[i];
-  newList.appendChild(option);
+  newList.appendChild(option);                              //add option to selecet(dropdown)
 }
 
-const removeButton = document.createElement('button');
-removeButton.textContent = 'Remove'
+const removeButton = document.createElement('button');      //create button element
+removeButton.textContent = 'Remove';
 
-divA_2.appendChild(removeButton);
+divA_2.appendChild(removeButton);                           //add button to HTML
 
-removeButton.addEventListener('click', () => {
-  const changeSectionOption = newList.remove(newList.selectedIndex)
+removeButton.addEventListener('click', () => {              //onclick button remove selected option element from dropdown 
+  newList.remove(newList.selectedIndex)
 })
 
 
@@ -66,71 +67,44 @@ removeButton.addEventListener('click', () => {
 
 
 const calculate_sphere = (e) => {
-  e.preventDefault()
-  const radius = document.querySelector('#radius').value;
-  const volume = ((4/3) * Math.PI * Math.pow(radius, 3));
-  const area = (4 * Math.PI * Math.pow(radius, 2));
-  document.querySelector('#volume').value = volume;
-  document.querySelector('#area').value = area;
+  e.preventDefault()              //had some strange behave from form; prevented with this line
+  let radius = parseInt(document.querySelector('#radius').value);  //take value from input
+  // console.log(radius, typeof(radius))
+  if(!isNaN(radius)) {            //check if value is number; if true:
+    const volume = ((4/3) * Math.PI * Math.pow(radius, 3));       //calculate volume
+    const area = (4 * Math.PI * Math.pow(radius, 2));             //calculate sphere
+    document.querySelector('#volume').value = volume.toFixed(2);  //change values of input fields with calculated results
+    document.querySelector('#area').value = area.toFixed(2);
+  }
+  else {            //change values of input fields with the strings below
+    document.querySelector('#volume').value = 'Radius must be NUMBER'   
+    document.querySelector('#area').value = 'Radius must be NUMBER'
+  }
  }
 
  
- window.onload = document.getElementById('MyForm').onsubmit = calculate_sphere; // this execute the volume_sphere function each time the calculate (submit) button is clicked
+ document.getElementById('MyForm').onsubmit = calculate_sphere; // this execute the volume_sphere function each time the calculate (submit) button is clicked
 
 //------------------------Question 4 ---------------------------
 //Now in this exercise we want you to create 3 buttons, each with a click action that will hide the respective question's answer above. So if you click the "Hide Question 1" button it will hide from the DOM the answer to your first exercise. If you click it again it will show the answer. 
 
 
 //resolve // QUESTION 4 here
-const divA_4  = document.getElementById('a-4');
-
-const q1 = document.querySelectorAll('.question-item')[0];
-const q2 = document.querySelectorAll('.question-item')[1];
-const q3 = document.querySelectorAll('.question-item')[2];
-
-const button1 = document.createElement('button');
-const button2 = document.createElement('button');
-const button3 = document.createElement('button');
-
-button1.textContent = "Hide Question 1";
-button2.textContent = "Hide Question 2";
-button3.textContent = "Hide Question 3";
-
-divA_4.appendChild(button1)
-divA_4.appendChild(button2)
-divA_4.appendChild(button3)
+const divA_4  = document.getElementById('a-4');     //select div #a-4
 
 
-button1.addEventListener('click', () => {
-  if(q1.style.display == 'block') {
-    button1.textContent = "Show Question 1";
-    q1.style.display = 'none';
-  } else {
-    button1.textContent = "Hide Question 1";
-    q1.style.display = 'block';
-  }
+for (let i = 0; i < 3; i++) {         //loop make 3 buttons
+  let button = document.createElement('button');
+  button.innerText = `Hide Question ${i + 1}`;        //add innerText to buttons
+  button.addEventListener('click', () => {          //onclick button check if display of selected div is 'none'; if yes:
+      if (document.getElementById(`a-${i + 1}`).parentNode.style.display === 'none') {
+          document.getElementById(`a-${i + 1}`).parentNode.style.display  = 'block'         //change display to 'block'
+          button.innerText = `Hide Question ${i + 1}`;                                      //change innerText to Hide...
+      } else {                                                                              // if display = 'block'
+          document.getElementById(`a-${i + 1}`).parentNode.style.display  = 'none'          //change display to 'none'
+          button.innerText = `Show Question ${i + 1}`;                                      //change innerText to Show...
+      }
+   })
 
-})
-
-button2.addEventListener('click', () => {
-  if(q2.style.display == 'block') {
-    button2.textContent = "Show Question 2";
-    q2.style.display = 'none';
-  } else {
-    button2.textContent = "Hide Question 2";
-    q2.style.display = 'block';
-  }
-
-})
-
-button3.addEventListener('click', (e) => {
-  e.preventDefault();
-  if(q3.style.display == 'block') {
-    button3.textContent = "Show Question 3";
-    q3.style.display = 'none';
-  } else {
-    button3.textContent = "Hide Question 3";
-    q3.style.display = 'block';
-  }
-
-})
+   divA_4.appendChild(button)       //add buttons to HTML
+}
