@@ -32,6 +32,14 @@ button:hover{
   border: solid;
 }
 
+#a-4 button {
+  margin-left: 20px;
+}
+
+#a-2 button {
+  margin-left: 20px;
+}
+
 .square{
   color: white;
   padding-top: 15px;
